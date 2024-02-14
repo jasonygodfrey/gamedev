@@ -4,7 +4,7 @@ import Drops from "@components/Drops";
 import KendurnsHero from "@components/KendurnsHero";
 import ServicesComponent from "@components/ServicesComponent";
 import WhyChooseUsComponent from "@components/WhyChooseUsComponent";
-import Layout from "../src/layout/Layout";
+import Layout from "../layout/Layout";
 
 const Kenburns = () => {
   return (
