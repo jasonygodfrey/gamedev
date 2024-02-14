@@ -1,6 +1,6 @@
 import Link from "next/link";
-import Layout from "../src/layout/Layout";
-import PageBanner from "../src/layout/PageBanner";
+import Layout from "../layout/Layout";
+import PageBanner from "../layout/PageBanner";
 
 const Roadmap = () => {
   return (
