@@ -1,8 +1,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import Layout from "../src/layout/Layout";
-import PageBanner from "../src/layout/PageBanner";
-import { getPagination, pagination } from "../src/utilits";
+import Layout from "../layout/Layout";
+import PageBanner from "../layout/PageBanner";
+import { getPagination, pagination } from "../utilits";
 
 const Blog = () => {
   let sort = 3;
