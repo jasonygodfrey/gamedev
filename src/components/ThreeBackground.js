@@ -10,10 +10,11 @@ const ThreeBackground = () => {
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
     const renderer = new THREE.WebGLRenderer({ alpha: true }); // alpha: true makes the background transparent
     renderer.setSize(window.innerWidth, window.innerHeight);
-    mountRef.current.appendChild(renderer.domElement); // Mount the renderer to the DOM
+    if (mountRef.current) {
+      mountRef.current.appendChild(renderer.domElement); // Mount the renderer to the DOM
+    }
 
     // Add content to the scene
-    // Example: a rotating cube
     const geometry = new THREE.BoxGeometry();
     const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
     const cube = new THREE.Mesh(geometry, material);
@@ -34,19 +35,31 @@ const ThreeBackground = () => {
 
     animate();
 
+    // Parallax effect on mouse move
+    const onDocumentMouseMove = (event) => {
+      var mouseX = (event.clientX - window.innerWidth / 2) / 100;
+      var mouseY = (event.clientY - window.innerHeight / 2) / 100;
+      camera.position.x += (mouseX - camera.position.x) * 0.05;
+      camera.position.y += (-mouseY - camera.position.y) * 0.05;
+      camera.lookAt(scene.position);
+    };
+    document.addEventListener('mousemove', onDocumentMouseMove, false);
+
     // Handle window resizing
     const handleResize = () => {
       renderer.setSize(window.innerWidth, window.innerHeight);
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
     };
-
     window.addEventListener('resize', handleResize);
 
     // Cleanup on unmount
     return () => {
-      mountRef.current.removeChild(renderer.domElement);
+      if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
+        mountRef.current.removeChild(renderer.domElement);
+      }
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('mousemove', onDocumentMouseMove);
     };
   }, []);
 
