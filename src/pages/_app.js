@@ -1,6 +1,13 @@
 import Head from "next/head";
 import { Fragment } from "react";
 import "../styles/globals.css";
+// Import Swiper styles globally in your project (e.g., in _app.js or in this component)
+// Import Swiper styles globally in your project (e.g., in _app.js or in this component)
+import 'swiper/css';
+import 'swiper/css/effect-creative';
+import 'swiper/css/autoplay';
+
+
 
 function MyApp({ Component, pageProps }) {
   return (
