@@ -3,11 +3,11 @@ import BlogComponent from "@components/BlogComponent";
 import Drops from "@components/Drops";
 import ServicesComponent from "@components/ServicesComponent";
 import WhyChooseUsComponent from "@components/WhyChooseUsComponent";
-import Layout from "../layout/Layout";
+import Layout from "../src/layout/Layout";
 
 const Index = () => {
   return (
-    <Layout pageName={"Game Dev Portfolio"}>
+    <Layout pageName={"Home Static"}>
       {/* Hero Header */}
       <div className="neoh_fn_hero">
         {/* Overlay (of hero header) */}
@@ -16,7 +16,7 @@ const Index = () => {
           <div className="bg_color" />
           {/* !Overlay Color */}
           {/* Overlay Image */}
-          <div className="bg_image" data-bg-img="img/hero/bg2.jpg" />
+          <div className="bg_image" data-bg-img="img/hero/bg.jpg" />
           {/* !Overlay Image */}
         </div>
         {/* Overlay (of hero header) */}
@@ -24,11 +24,11 @@ const Index = () => {
           <div className="container">
             <div className="content">
               <h2 className="fn_title" title="Neoh">
-                JASONG
+                Neoh
               </h2>
               <p className="fn_desc fn_animated_text">
-                SOFTWARE DEVELOPER ENGINEER
-
+                The collection built by and runby codeefly. Together we are
+                strong than ever.
               </p>
             </div>
           </div>
