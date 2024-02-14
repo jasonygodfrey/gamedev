@@ -74,21 +74,20 @@ const Footer = () => {
             <div className="fb_in">
               <div className="fb_left">
                 <p>
-                  Copyright {new Date().getFullYear()} - Designed &amp;
-                  Developed by{" "}
+                  Copyright {new Date().getFullYear()}  -  {" "}
                   <a
-                    href="https://themeforest.net/user/codeefly/portfolio"
+                    href="JasonGodfrey.dev"
                     target="_blank"
                     rel="noreferrer"
                   >
-                    Codeefly
+                    JasonGodfrey.dev
                   </a>
-                </p>
+                </p> 
               </div>
               <div className="fb_right">
                 <ul>
                   <li>
-                    <Link legacyBehavior href="/roadmap">
+                    <Link legacyBehavior href="#">
                       RoadMap
                     </Link>
                   </li>

@@ -383,12 +383,13 @@ a.full_link{
 	max-width: 500px;
 	margin: 0 auto;
 	padding: 0;
-	font-size: 120px;
+	font-size: 70px;
 	text-transform: uppercase;
 	letter-spacing: 35px; /* after changing this value, don't forget to change left value */
 	line-height: 1;
 	margin-bottom: 10px;
-	font-family: neon;
+	font-family: Arial, sans-serif;
+
 	transform: translateZ(0);
 	overflow: hidden;
 	position: relative;
