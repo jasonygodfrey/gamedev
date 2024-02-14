@@ -154,11 +154,13 @@ const Header = () => {
         <div className="container">
           <div className="header_in">
             <div className="logo">
-              <Link legacyBehavior href="/">
-                <a>
-                  <img src="img/logo.png" alt="" />
-                </a>
-              </Link>
+            <Link legacyBehavior href="/">
+  <a>
+    <img src="img/logo.png" alt="" style={{ width: '64px', height: '64px' }} />
+  </a>
+</Link>
+
+            
             </div>
             <div className="trigger">
               <div className="trigger_in" onClick={() => setToggle(!toggle)}>
