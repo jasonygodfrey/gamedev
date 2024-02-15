@@ -15,7 +15,7 @@ const Index = () => {
         {/* Overlay (of hero header) */}
         <div className="bg_overlay">
           {/* Overlay Color */}
-          <div className="bg_color" />
+         {/* <div className="bg_color" />*/}
           <ThreeBackground />
 
           {/* !Overlay Color */}
@@ -52,14 +52,15 @@ const Index = () => {
       <AboutComponent />
       {/* !About Section */}
       {/* Services Section */}
-      <ServicesComponent />
+      
       {/* !Services Section */}
       <Drops />
       {/* Investor Section */}
-      <WhyChooseUsComponent />
+    {/*  <WhyChooseUsComponent /> */}
       {/* !Investor Section */}
       {/* Blog Section */}
-      <BlogComponent />
+     {/* <BlogComponent /> */}
+     <ServicesComponent />
     </Layout>
   );
 };

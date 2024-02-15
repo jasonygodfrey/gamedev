@@ -1,41 +1,77 @@
 import { useEffect, useRef } from 'react';
 import * as THREE from 'three';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 const ThreeBackground = () => {
   const mountRef = useRef(null);
 
   useEffect(() => {
-    // Scene setup
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({ alpha: true }); // alpha: true makes the background transparent
+    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
+    const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
     if (mountRef.current) {
-      mountRef.current.appendChild(renderer.domElement); // Mount the renderer to the DOM
+      mountRef.current.appendChild(renderer.domElement);
     }
 
-    // Add content to the scene
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
-    const cube = new THREE.Mesh(geometry, material);
-    scene.add(cube);
+    // Post-processing
+    const composer = new EffectComposer(renderer);
+    composer.addPass(new RenderPass(scene, camera));
+
+    const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
+    bloomPass.threshold = 0.21;
+    bloomPass.strength = 1.12; // Adjust the bloom strength
+    bloomPass.radius = 0.55; // Adjust the bloom radius
+    composer.addPass(bloomPass);
+
+    // Adding ambient light
+    const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+    scene.add(ambientLight);
+
+    // Directional light
+    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    directionalLight.position.set(0, 1, 0);
+    //scene.add(directionalLight);
+
+    // Animation Mixer
+    let mixer;
+
+    const loader = new GLTFLoader();
+    loader.load('/portal/scene.gltf', (gltf) => {
+      scene.add(gltf.scene);
+      gltf.scene.scale.set(0.1, 0.1, 0.1);
+      gltf.scene.position.set(0, -80, -300);
+      gltf.scene.rotation.y = Math.PI / 2.2; // Rotates the model
+
+      if (gltf.animations && gltf.animations.length) {
+        mixer = new THREE.AnimationMixer(gltf.scene);
+        gltf.animations.forEach((clip) => {
+          const action = mixer.clipAction(clip);
+          action.play();
+        });
+      }
+    });
 
     camera.position.z = 5;
 
-    // Animation loop
+    const clock = new THREE.Clock();
+
     const animate = function () {
       requestAnimationFrame(animate);
+      const delta = clock.getDelta();
 
-      // Rotate the cube
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
+      if (mixer) {
+        mixer.update(delta);
+      }
 
-      renderer.render(scene, camera);
+      composer.render(delta); // Use composer instead of renderer to include the bloom effect
     };
 
     animate();
 
-    // Parallax effect on mouse move
     const onDocumentMouseMove = (event) => {
       var mouseX = (event.clientX - window.innerWidth / 2) / 100;
       var mouseY = (event.clientY - window.innerHeight / 2) / 100;
@@ -45,15 +81,16 @@ const ThreeBackground = () => {
     };
     document.addEventListener('mousemove', onDocumentMouseMove, false);
 
-    // Handle window resizing
     const handleResize = () => {
-      renderer.setSize(window.innerWidth, window.innerHeight);
-      camera.aspect = window.innerWidth / window.innerHeight;
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      renderer.setSize(width, height);
+      composer.setSize(width, height);
+      camera.aspect = width / height;
       camera.updateProjectionMatrix();
     };
     window.addEventListener('resize', handleResize);
 
-    // Cleanup on unmount
     return () => {
       if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);
@@ -63,7 +100,7 @@ const ThreeBackground = () => {
     };
   }, []);
 
-  return <div ref={mountRef} />;
+  return <div ref={mountRef} style={{ width: '100%', height: '100%' }} />;
 };
 
 export default ThreeBackground;

@@ -186,7 +186,7 @@ const Drops = () => {
             <div className="clearfix" />
           </div>
           {/* !Drops List */}
-          <Timeline />
+       {/*  <Timeline /> */}
         </div>
       </section>
       {/* !Drops Section */}
