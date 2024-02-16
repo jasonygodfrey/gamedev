@@ -920,7 +920,7 @@ a.full_link{
 
 /* Drop Section */
 #drop{
-	padding: 135px 0;
+	padding: 35px 0; 
 	position: relative;
 	background-color: #111;
 }
@@ -929,7 +929,7 @@ a.full_link{
 }
 /* Drops List Shortcode */
 #drop .neoh_fn_drops{
-	margin-bottom: 143px;
+	margin-bottom: 43px;
 }
 .neoh_fn_drops ul{
 	display: -webkit-flex;
@@ -1296,7 +1296,7 @@ a.full_link{
 /* Section Investor */
 #investor{
 	position: relative;
-	padding: 150px 0;
+/*	padding: -50px 0; */
 }
 #investor .neoh_fn_title{
 	margin-bottom: 76px;
@@ -2367,7 +2367,7 @@ a.full_link{
 /* About Page*/
 /* Section Information */
 #information{
-	padding: 150px 0;
+	padding: 0px 0;
 	background-color: #111;
 }
 /* Guarantee List */

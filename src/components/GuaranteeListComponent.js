@@ -6,7 +6,7 @@ const GuaranteeListComponent = () => {
       <section id="information">
         <div className="container">
           
-          <div className="neoh_fn_gualist">
+         {/* <div className="neoh_fn_gualist">
             <ul>
               <li>
                 <div className="item">
@@ -45,7 +45,7 @@ const GuaranteeListComponent = () => {
                 </div>
               </li>
             </ul>
-          </div>
+          </div>*/}
 
           {/* Skills Section */}
           <div className="neoh_fn_skills">
