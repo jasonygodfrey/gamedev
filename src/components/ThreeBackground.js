@@ -23,18 +23,18 @@ const ThreeBackground = () => {
 
     const bloomPass = new UnrealBloomPass(new THREE.Vector2(window.innerWidth, window.innerHeight), 1.5, 0.4, 0.85);
     bloomPass.threshold = 0.21;
-    bloomPass.strength = 1.12; // Adjust the bloom strength
-    bloomPass.radius = 0.55; // Adjust the bloom radius
+    bloomPass.strength = 1.12;
+    bloomPass.radius = 0.55;
     composer.addPass(bloomPass);
 
     // Adding ambient light
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
-    // Directional light
-    const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    directionalLight.position.set(0, 1, 0);
-    //scene.add(directionalLight);
+    // Directional light (commented out, but can be added if needed)
+    // const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    // directionalLight.position.set(0, 1, 0);
+    // scene.add(directionalLight);
 
     // Animation Mixer
     let mixer;
@@ -44,7 +44,7 @@ const ThreeBackground = () => {
       scene.add(gltf.scene);
       gltf.scene.scale.set(0.1, 0.1, 0.1);
       gltf.scene.position.set(0, -80, -300);
-      gltf.scene.rotation.y = Math.PI / 2.2; // Rotates the model
+      gltf.scene.rotation.y = Math.PI / 2.2;
 
       if (gltf.animations && gltf.animations.length) {
         mixer = new THREE.AnimationMixer(gltf.scene);
@@ -67,7 +67,7 @@ const ThreeBackground = () => {
         mixer.update(delta);
       }
 
-      composer.render(delta); // Use composer instead of renderer to include the bloom effect
+      composer.render(delta);
     };
 
     animate();
@@ -79,7 +79,20 @@ const ThreeBackground = () => {
       camera.position.y += (-mouseY - camera.position.y) * 0.05;
       camera.lookAt(scene.position);
     };
+
+    // Mobile control
+    const onDeviceOrientation = (event) => {
+      const { alpha, beta, gamma } = event;
+      const x = (gamma ? gamma : 0) / 90; // Left to right
+      const y = (beta ? beta - 90 : 0) / 90; // Front to back
+
+      camera.position.x += (x - camera.position.x) * 0.1;
+      camera.position.y += (-y - camera.position.y) * 0.1;
+      camera.lookAt(scene.position);
+    };
+
     document.addEventListener('mousemove', onDocumentMouseMove, false);
+    window.addEventListener('deviceorientation', onDeviceOrientation, false);
 
     const handleResize = () => {
       const width = window.innerWidth;
@@ -97,6 +110,7 @@ const ThreeBackground = () => {
       }
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousemove', onDocumentMouseMove);
+      window.removeEventListener('deviceorientation', onDeviceOrientation);
     };
   }, []);
 
