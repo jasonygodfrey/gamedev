@@ -112,20 +112,23 @@ export const imgToSVG = () => {
         const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(response, "text/html");
         let svg = xmlDoc.querySelector("svg");
-        if (typeof imgID !== "undefined") {
-          svg.setAttribute("id", imgID);
+        if (svg) { // Ensure svg element exists before proceeding
+          if (typeof imgID !== "undefined") {
+            svg.setAttribute("id", imgID);
+          }
+
+          if (typeof imgClass !== "undefined") {
+            svg.setAttribute("class", imgClass + " replaced-svg");
+          }
+
+          svg.removeAttribute("xmlns:a");
+
+          el.parentNode && el.parentNode.replaceChild(svg, el);
         }
-
-        if (typeof imgClass !== "undefined") {
-          svg.setAttribute("class", imgClass + " replaced-svg");
-        }
-
-        svg.removeAttribute("xmlns:a");
-
-        el.parentNode && el.parentNode.replaceChild(svg, el);
-      });
+      }).catch(error => console.error("Error fetching or parsing SVG:", error));
   });
 };
+
 
 export const progressTotop = () => {
   var winScroll = window.pageYOffset;
