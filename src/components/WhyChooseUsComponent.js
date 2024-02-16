@@ -25,7 +25,7 @@ const WhyChooseUsComponent = () => {
         </div>
         {/* !Main Title */}
         {/* Investor List Shortcode */}
-        <div className="neoh_fn_investor" style={{ textAlign: 'center' }}>
+        <div className="neoh_fn_investor" style={{ textAlign: 'center', marginBottom: '50px' }}>
           <ul style={{ display: 'flex', justifyContent: 'center', listStyle: 'none', padding: 0 }}>
             <li style={{ margin: '0 10px' }}> {/* Adjust margins as needed */}
               <div className="item">
