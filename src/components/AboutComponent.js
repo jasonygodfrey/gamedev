@@ -1,13 +1,21 @@
 import Link from "next/link";
+import ThreeBackground2 from "@components/ThreeBackground2"; // Ensure this path is correct
 
 const AboutComponent = () => {
   return (
-    <section id="about">
-      <div className="container">
-        {/* About Item #1 with Video Player */}
+    <section id="about" style={{ position: 'relative' }}>
+      {/* Position ThreeBackground absolutely to cover the whole section */}
+      <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
+        <ThreeBackground2 />
+      </div>
+
+      {/* Content container with higher zIndex to overlay on the ThreeBackground */}
+      <div className="container" style={{ position: 'relative', zIndex: 1, paddingTop: '20px', paddingBottom: '20px' }}>
+        {/* This padding is added to ensure content does not overlay directly on top of the section edges */}
+        
         <div className="neoh_fn_about_item">
           <div className="img_item4">
-            {/* Replace this <img> tag with the <iframe> for video */}
+            {/* Iframe or other content here */}
             <iframe
               width="560"
               height="315"
@@ -20,7 +28,7 @@ const AboutComponent = () => {
           </div>
           <div className="content_item">
             <div className="neoh_fn_title" data-align="left">
-              <h3 className="fn_title">Crafting Worlds: About me</h3>
+              <h3 className="fn_title">Crafting Worlds: About Me</h3>
               <div className="line">
                 <span />
               </div>
@@ -32,7 +40,7 @@ const AboutComponent = () => {
                 challenges he faced throughout his life.
               </p>
               <p>
-                The artwork has been hand-drawned by Robert Green in the
+                The artwork has been hand-drawn by Robert Green in the
                 traditional anime style and composited by Layla Efiyo.
               </p>
             </div>
@@ -59,6 +67,7 @@ const AboutComponent = () => {
                 </span>
                 <span className="text">Discord</span>
               </a>
+              
             </div>
           </div>
         </div>
