@@ -1,16 +1,26 @@
 import Link from "next/link";
+
 const AboutComponent = () => {
   return (
     <section id="about">
       <div className="container">
-        {/* About Item #1 */}
+        {/* About Item #1 with Video Player */}
         <div className="neoh_fn_about_item">
-          <div className="img_item">
-            <img src="img/about/1.jpg" alt="" />
+          <div className="img_item4">
+            {/* Replace this <img> tag with the <iframe> for video */}
+            <iframe
+              width="560"
+              height="315"
+              src="https://www.youtube.com/embed/7e90gBu4pas"
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
           </div>
           <div className="content_item">
             <div className="neoh_fn_title" data-align="left">
-              <h3 className="fn_title">The Rise of Neoh</h3>
+              <h3 className="fn_title">Crafting Worlds: About me</h3>
               <div className="line">
                 <span />
               </div>
@@ -54,7 +64,8 @@ const AboutComponent = () => {
         </div>
         {/* !About Item #1 */}
         {/* About Item #2 */}
-        <div className="neoh_fn_about_item reverse">
+        {/* Uncomment and modify this section as needed */}
+        {/* <div className="neoh_fn_about_item reverse">
           <div className="img_item">
             <img src="img/about/2.jpg" alt="" />
           </div>
@@ -68,14 +79,14 @@ const AboutComponent = () => {
             <div className="desc">
               <p>
                 Simply holding a Neoh will give you access to seasonal airdrops,
-                merchandise, physical and digital artworks, collectibles and
+                merchandise, physical and digital artworks, collectibles, and
                 more.
               </p>
               <p>
                 We understand the importance of the cross-over between these
-                worlds and we truly believe to bridge these two together. Our
-                goals will always be for the community - creating, building and
-                innovating together with the commmunity.
+                worlds and we truly believe in bridging these two together. Our
+                goals will always be for the community - creating, building, and
+                innovating together with the community.
               </p>
             </div>
             <div className="buttons">
@@ -86,10 +97,11 @@ const AboutComponent = () => {
               </Link>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* !About Item #2 */}
       </div>
     </section>
   );
 };
+
 export default AboutComponent;

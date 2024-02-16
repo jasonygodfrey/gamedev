@@ -27,9 +27,17 @@ const Index = () => {
         <div className="hero_content">
           <div className="container">
             <div className="content">
-              <h2 className="fn_title" title="JASONG">
+            <h2
+                className="fn_title"
+                title="JASONG"
+                style={{
+                  // Inline styles here won't change on hover
+                  cursor: 'default', // Ensures the cursor doesn't change, if that's part of the hover effect
+                }}
+              >
                 JASONG
               </h2>
+
               <p className="fn_desc fn_animated_text">
                 GAME DEV PORTFOLIO
 
@@ -51,16 +59,50 @@ const Index = () => {
       {/* About Section */}
       <AboutComponent />
       {/* !About Section */}
+      <section id="video">
+          {/* Dividers */}
+          <img
+            src="svg/divider.svg"
+            alt=""
+            className="fn__svg fn__divider top_divider"
+          />
+          <img
+            src="svg/divider.svg"
+            alt=""
+            className="fn__svg fn__divider bottom_divider"
+          />
+          {/* !Dividers */}
+          {/* Video Shortcode */}
+        {/*  <div className="neoh_fn_video">
+            <div className="bg_overlay">
+              <div className="bg_image" data-bg-img="img/hero/bg.jpg" />
+              <div className="bg_color" />
+            </div>
+            <div className="v_content">
+              <a
+                className="popup-youtube"
+                href="//www.youtube.com/embed/7e90gBu4pas?autoplay=1"
+              >
+                <img src="svg/play.svg" alt="" className="fn__svg" />
+              </a>
+            </div>
+          </div> */}
+          {/* !Video Shortcode */}
+        </section>
+        {/* !Video Section */}
       {/* Services Section */}
       
       {/* !Services Section */}
-      <Drops />
+<Drops />
+    {/*  <Drops />*/}
       {/* Investor Section */}
-    {/*  <WhyChooseUsComponent /> */}
+    <WhyChooseUsComponent /> 
       {/* !Investor Section */}
       {/* Blog Section */}
      {/* <BlogComponent /> */}
-     <ServicesComponent />
+    {/* <ServicesComponent /> */}
+    
+
     </Layout>
   );
 };

@@ -4,7 +4,7 @@ const Footer = () => {
     <footer id="footer">
       <div className="neoh_fn_footer">
         {/* Footer Top */}
-        <div className="footer_top">
+     {/*   <div className="footer_top">
           <div className="container">
             <div className="ft_in">
               <div className="desc">
@@ -66,7 +66,7 @@ const Footer = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         {/* !Footer Top */}
         {/* Footer Bottom */}
         <div className="footer_bottom">
@@ -76,10 +76,10 @@ const Footer = () => {
                 <p>
                   Copyright {new Date().getFullYear()}  -  {" "}
                   <a
-                    href="JasonGodfrey.dev"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
+      href="https://JasonGodfrey.dev" // Added https:// to ensure the URL is absolute
+      target="_blank"
+      rel="noreferrer noopener" // Added noopener for security
+    >
                     JasonGodfrey.dev
                   </a>
                 </p> 

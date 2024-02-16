@@ -28,14 +28,11 @@ const Header = () => {
               <li className="menu-item menu-item-has-children">
                 <a
                   href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setHomeToggle(!homeToggle);
-                  }}
+                 
                 >
                   Home
                 </a>
-                <ul
+               {/* } <ul
                   className="sub-menu"
                   style={{ display: homeToggle ? "block" : "none" }}
                 >
@@ -59,7 +56,7 @@ const Header = () => {
                       Half Slider
                     </Link>
                   </li>
-                </ul>
+                </ul> */}
               </li>
               <li className="menu-item">
                 <Link legacyBehavior href="/about">

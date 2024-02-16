@@ -1,6 +1,8 @@
 import { Fragment, useState } from "react";
 import ProductPopup from "./popup/ProductPopup";
 import Timeline from "./Timeline";
+import GuaranteeListComponent from "@components/GuaranteeListComponent"; // Adjust the import path according to your project's structure
+
 
 const Drops = () => {
   const [toggle, setToggle] = useState(false);
@@ -52,7 +54,7 @@ const Drops = () => {
         <div className="container">
           {/* Main Title */}
           <div className="neoh_fn_title">
-            <h3 className="fn_title">Our Latest Drops</h3>
+            <h3 className="fn_title">Projects</h3>
             <div className="line">
               <span />
             </div>
@@ -183,14 +185,22 @@ const Drops = () => {
               </li>
             </ul>
             {/* Clearfix */}
+            
             <div className="clearfix" />
+            
           </div>
+          
           {/* !Drops List */}
        {/*  <Timeline /> */}
+   
         </div>
+        
       </section>
+      
       {/* !Drops Section */}
+      
     </Fragment>
+    
   );
 };
 export default Drops;
