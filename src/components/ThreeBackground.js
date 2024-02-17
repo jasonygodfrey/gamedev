@@ -16,6 +16,10 @@ const ThreeBackground = () => {
     if (mountRef.current) {
       mountRef.current.appendChild(renderer.domElement);
     }
+  // Set initial camera rotation
+  const initialBeta = 90; // device looking down
+  const degtorad = Math.PI / 180; // Degree-to-Radian conversion
+  camera.rotation.x = initialBeta * degtorad;
 
     // Post-processing
     const composer = new EffectComposer(renderer);
@@ -82,6 +86,7 @@ const ThreeBackground = () => {
 
     // Mobile control
     const onDeviceOrientation = (event) => {
+      
       const { alpha, beta, gamma } = event;
       const degtorad = Math.PI / 180; // Degree-to-Radian conversion
     
