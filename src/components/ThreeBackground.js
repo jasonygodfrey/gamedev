@@ -88,7 +88,7 @@ const ThreeBackground = () => {
     
       camera.position.x = x;
       camera.position.y = -y;
-      camera.lookAt(scene.position);
+    //  camera.lookAt(scene.position);
     };
 
     document.addEventListener('mousemove', onDocumentMouseMove, false);
