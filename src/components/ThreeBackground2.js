@@ -4,21 +4,17 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { useEffct } from 'react';
+
 
 
 const ThreeBackground2 = () => {
 
 
-  useEffect(() => {
-    // Add your event listener
-    window.addEventListener('deviceorientation', onDeviceOrientation);
 
-    // Don't forget to clean up your event listener
-    return () => {
-      window.removeEventListener('deviceorientation', onDeviceOrientation);
-    };
-  }, []);
+    const mountRef = useRef(null);
+  
+    useEffect(() => {
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -108,7 +104,7 @@ const ThreeBackground2 = () => {
       }
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousemove', onDocumentMouseMove);
-      window.removeEventListener('deviceorientation', onDeviceOrientation); // Ensure this is correctly removing the listener
+     // window.removeEventListener('deviceorientation', onDeviceOrientation); // Ensure this is correctly removing the listener
 
     };
   }, []);
