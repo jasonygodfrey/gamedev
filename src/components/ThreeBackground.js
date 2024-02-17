@@ -83,12 +83,14 @@ const ThreeBackground = () => {
     // Mobile control
     const onDeviceOrientation = (event) => {
       const { alpha, beta, gamma } = event;
-      const x = (gamma ? gamma : 0) / 45; // Left to right
-      const y = (beta ? beta - 90 : 0) / 45; // Front to back
+      const degtorad = Math.PI / 180; // Degree-to-Radian conversion
     
-      camera.position.x = x;
-      camera.position.y = -y;
-    //  camera.lookAt(scene.position);
+      // Convert degrees to radians and adjust sensitivity
+      const x = (gamma ? gamma * degtorad : 0); // Left to right
+      const y = (beta ? beta * degtorad : 0); // Front to back
+    
+      // Set camera rotation
+      camera.rotation.set(y, x, 0, "YXZ");
     };
 
     document.addEventListener('mousemove', onDocumentMouseMove, false);
