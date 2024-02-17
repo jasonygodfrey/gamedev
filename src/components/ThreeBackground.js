@@ -67,6 +67,9 @@ const ThreeBackground = () => {
         mixer.update(delta);
       }
 
+        // Update camera position based on device orientation
+  updateCameraPosition();
+
       composer.render(delta);
     };
 
