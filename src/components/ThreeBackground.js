@@ -83,8 +83,8 @@ const ThreeBackground = () => {
     // Mobile control
     const onDeviceOrientation = (event) => {
       const { alpha, beta, gamma } = event;
-      const x = (gamma ? gamma : 0) / 90; // Left to right
-      const y = (beta ? beta - 90 : 0) / 90; // Front to back
+      const x = (gamma ? gamma : 0) / 45; // Left to right
+      const y = (beta ? beta - 90 : 0) / 45; // Front to back
     
       camera.position.x = x;
       camera.position.y = -y;
