@@ -98,6 +98,8 @@ const ThreeBackground2 = () => {
       }
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousemove', onDocumentMouseMove);
+      window.removeEventListener('deviceorientation', onDeviceOrientation); // Ensure this is correctly removing the listener
+
     };
   }, []);
 

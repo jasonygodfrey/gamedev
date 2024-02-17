@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
+
 const ThreeBackground = () => {
   const mountRef = useRef(null);
 
@@ -30,7 +31,14 @@ const ThreeBackground = () => {
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
 
+    // Directional light (commented out, but can be added if needed)
+    // const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
+    // directionalLight.position.set(0, 1, 0);
+    // scene.add(directionalLight);
+
+    // Animation Mixer
     let mixer;
+
     const loader = new GLTFLoader();
     loader.load('/portal/scene.gltf', (gltf) => {
       scene.add(gltf.scene);
@@ -51,21 +59,6 @@ const ThreeBackground = () => {
 
     const clock = new THREE.Clock();
 
-    let orientationState = { x: 0, y: 0 };
-
-    // Define updateCameraPosition before its first use
-    const updateCameraPosition = () => {
-      camera.position.x += (orientationState.x - camera.position.x) * 0.05;
-      camera.position.y += (-orientationState.y - camera.position.y) * 0.05;
-      camera.lookAt(scene.position);
-    };
-
-    const onDeviceOrientation = (event) => {
-      const { beta, gamma } = event;
-      orientationState.x = (gamma ? gamma : 0) / 90; // Left to right
-      orientationState.y = (beta ? beta - 90 : 0) / 90; // Front to back
-    };
-
     const animate = function () {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
@@ -73,8 +66,6 @@ const ThreeBackground = () => {
       if (mixer) {
         mixer.update(delta);
       }
-
-      updateCameraPosition(); // Now it's defined before use
 
       composer.render(delta);
     };
@@ -89,6 +80,17 @@ const ThreeBackground = () => {
       camera.lookAt(scene.position);
     };
 
+    // Mobile control
+    const onDeviceOrientation = (event) => {
+      const { alpha, beta, gamma } = event;
+      const x = (gamma ? gamma : 0) / 90; // Left to right
+      const y = (beta ? beta - 90 : 0) / 90; // Front to back
+
+      camera.position.x += (x - camera.position.x) * 0.1;
+      camera.position.y += (-y - camera.position.y) * 0.1;
+      camera.lookAt(scene.position);
+    };
+
     document.addEventListener('mousemove', onDocumentMouseMove, false);
     window.addEventListener('deviceorientation', onDeviceOrientation, false);
 
@@ -100,7 +102,6 @@ const ThreeBackground = () => {
       camera.aspect = width / height;
       camera.updateProjectionMatrix();
     };
-
     window.addEventListener('resize', handleResize);
 
     return () => {
