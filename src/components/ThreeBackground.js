@@ -85,9 +85,9 @@ const ThreeBackground = () => {
       const { alpha, beta, gamma } = event;
       const x = (gamma ? gamma : 0) / 90; // Left to right
       const y = (beta ? beta - 90 : 0) / 90; // Front to back
-
-      camera.position.x += (x - camera.position.x) * 0.01;
-      camera.position.y += (-y - camera.position.y) * 0.01;
+    
+      camera.position.x = x;
+      camera.position.y = -y;
       camera.lookAt(scene.position);
     };
 
