@@ -8,6 +8,14 @@ import ThreeBackground from "@components/ThreeBackground"; // Adjust the import 
 
 
 const Index = () => {
+  useEffect(() => {
+    if (window.screen.orientation) {
+      window.screen.orientation.lock('portrait')
+        .catch((error) => {
+          console.error(`Could not lock screen orientation: ${error}`);
+        });
+    }
+  }, []);
   return (
     <Layout pageName={"Game Dev Portfolio"}>
       {/* Hero Header */}
