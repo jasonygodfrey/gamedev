@@ -7,7 +7,9 @@ import Layout from "../layout/Layout";
 import ThreeBackground from "@components/ThreeBackground"; // Adjust the import path according to your project's structure
 
 
+
 const Index = () => {
+
   
   return (
     <Layout pageName={"Game Dev Portfolio"}>
