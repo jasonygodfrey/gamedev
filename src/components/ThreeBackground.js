@@ -92,7 +92,7 @@ camera.rotation.x = initialBeta * degtorad;
     
       // Convert degrees to radians and adjust sensitivity
       const x = (gamma ? gamma * degtorad : 0); // Left to right
-      const y = (beta ? beta * degtorad : 0- 90); // Front to back
+      const y = (beta ? beta * degtorad : 0); // Front to back
     
       // Set camera rotation
       camera.rotation.set(y, x, 0, "YXZ");
