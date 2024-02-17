@@ -5,18 +5,10 @@ import ServicesComponent from "@components/ServicesComponent";
 import WhyChooseUsComponent from "@components/WhyChooseUsComponent";
 import Layout from "../layout/Layout";
 import ThreeBackground from "@components/ThreeBackground"; // Adjust the import path according to your project's structure
-import { useEffect } from 'react';
 
 
 const Index = () => {
-  useEffect(() => {
-    if (window.screen.orientation) {
-      window.screen.orientation.lock('portrait')
-        .catch((error) => {
-          console.error(`Could not lock screen orientation: ${error}`);
-        });
-    }
-  }, []);
+  
   return (
     <Layout pageName={"Game Dev Portfolio"}>
       {/* Hero Header */}
