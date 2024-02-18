@@ -4,7 +4,6 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 
 const ThreeBackground = () => {
@@ -86,21 +85,19 @@ camera.rotation.x = initialBeta * degtorad;
       camera.lookAt(scene.position);
     };
 
-    const controls = new OrbitControls(camera, renderer.domElement);
-
-// Update the onDeviceOrientation function
-const onDeviceOrientation = (event) => {
-  const { alpha, beta, gamma } = event;
-  const degtorad = Math.PI / 180; // Degree-to-Radian conversion
-
-  // Convert degrees to radians and adjust sensitivity
-  const x = (gamma ? gamma * degtorad : 0); // Left to right
-  const y = (beta ? beta * degtorad : 0); // Front to back
-
-  // Set controls target
-  controls.target.set(y, x, 0);
-  controls.update();
-};
+    // Mobile control
+    const onDeviceOrientation = (event) => {
+      
+      const { alpha, beta, gamma } = event;
+      const degtorad = Math.PI / 180; // Degree-to-Radian conversion
+    
+      // Convert degrees to radians and adjust sensitivity
+      const x = (gamma ? gamma * degtorad : 0); // Left to right
+      const y = (beta ? beta * degtorad : 0); // Front to back
+    
+      // Set camera rotation
+      camera.rotation.set(y, x, 0, "YXZ");
+    };
 
     document.addEventListener('mousemove', onDocumentMouseMove, false);
     window.addEventListener('deviceorientation', onDeviceOrientation, false);
