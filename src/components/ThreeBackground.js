@@ -113,7 +113,7 @@ camera.rotation.x = initialBeta * degtorad;
     window.addEventListener('resize', handleResize);
 
     return () => {
-      controls.dispose();
+      
 
       if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);

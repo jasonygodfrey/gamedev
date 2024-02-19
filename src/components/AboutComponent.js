@@ -1,8 +1,30 @@
-
 import ThreeBackground2 from "@components/ThreeBackground2"; // Ensure this path is correct
 import Link from "next/link";
+import React, { useState } from 'react';
+
 
 const AboutComponent = () => {
+  const initialText = "Greetings! My name is Jason: Digital Alchemist and Architect of Virtual Realms. As an ascendant of the mystical arts of  C++, Lua, SQL, JavaScript, and Python, I engineer the essence of immersive, interactive digital experiences. Each venture embarked upon is led with a collaborative, innovative gameplay, and user experience-first ethos. Thank you, brave traveller, for embarking upon this thrilling quest through my practiced conjurings.";
+  const wizardText = "Welcome! I'm Jason: Software Engineer, game developer, and full-stack web designer! My technical expertise includes C++, Lua, SQL, JavaScript, and Python. I excel in blending immersive gameplay with interactive web technologies, leveraging open-source MMO frameworks to create engaging experiences. With a solid foundation in computer science and business information systems, I bring a collaborative spirit and a passion for innovative game design to every project. Explore my journey from web to game development and view my projects.";
+
+  const [text, setText] = useState(initialText);
+
+  const [isWizardMode, setIsWizardMode] = useState(false);
+
+  const handleClick = () => {
+    setText(text === initialText ? wizardText : initialText);
+    setIsWizardMode(!isWizardMode);
+  }
+
+  const wizardStyle = {
+    background: 'linear-gradient(270deg, #ff0000, #ff7a00, #acff00, #00ff40, #00ffff, #0040ff, #7a00ff, #ff00c1, #ff0000)',
+    backgroundSize: '200% 200%',
+    WebkitBackgroundClip: 'text',
+    WebkitTextFillColor: 'transparent',
+    animation: 'gradientChange 5s ease-infinite, glow 2s ease-infinite',
+  };
+  
+
   return (
     <section id="about" style={{ position: 'relative' }}>
       <div style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', zIndex: 0 }}>
@@ -31,59 +53,48 @@ const AboutComponent = () => {
               </div>
             </div>
             <div className="desc">
-              <p>
-                As the first hero of the Neoh Universe, collection has over
-                9,999 unique skins drawn from the different missions and
-                challenges he faced throughout his life.
-              </p>
-              <p>
-                The artwork has been hand-drawn by Robert Green in the
-                traditional anime style and composited by Layla Efiyo.
-              </p>
-            </div>
-            <div className="buttons">
-              <a
-                href="https://github.com/jasonygodfrey"
-                target="_blank"
-                rel="noreferrer"
-                className="neoh_fn_button"
-              >
-                <span className="icon">
-                  {/* Replace with your GitHub icon */}
-                  <img src="svg/github.svg" alt="GitHub" className="fn__svg" />
-                </span>
-                <span className="text">GitHub</span>
-              </a>
-              <a
-                href="https://www.linkedin.com/in/jasong7"
-                target="_blank"
-                rel="noreferrer"
-                className="neoh_fn_button"
-              >
-                <span className="icon">
-                  {/* Replace with your LinkedIn icon */}
-                  <img src="svg/linkedin.svg" alt="LinkedIn" className="fn__svg" />
-                </span>
-                <span className="text">LinkedIn</span>
-              </a>
-              <a
-                href="http://jasongodfrey.dev"
-                target="_blank"
-                rel="noreferrer"
-                className="neoh_fn_button"
-              >
-                <span className="text">Web Development</span>
-              </a>
-              <a
-                href="https://samuraistudios.vercel.app"
-                target="_blank"
-                rel="noreferrer"
-                className="neoh_fn_button"
-              >
-                <span className="text">Samurai Studios</span>
-              </a>
-            </div>
-          </div>
+        <p>{text}</p>
+        <div className="wizard">
+  <span className="wizardcolor" onClick={handleClick}>
+    [{isWizardMode ? '🔮wizard mode 🧙‍♂️' : '⭐/Translate'}]
+  </span>
+</div>
+      </div>
+      <div className="buttons">
+  <a
+    href="https://github.com/jasonygodfrey"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    GitHub
+  </a>
+  <a
+    href="https://www.linkedin.com/in/jasong7"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    LinkedIn
+  </a>
+  <a
+    href="http://jasongodfrey.dev"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    Web Development
+  </a>
+  <a
+    href="https://samuraistudios.vercel.app"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    Samurai Studios
+  </a>
+</div>
+</div>
         </div>
       </div>
     </section>

@@ -920,7 +920,7 @@ a.full_link{
 
 /* Drop Section */
 #drop{
-	padding: 35px 0; 
+	padding: 75px 0; 
 	position: relative;
 	background-color: #111;
 }
@@ -4766,3 +4766,53 @@ a.full_link{
 		padding: 15px;
 	}
 }
+
+@keyframes pulse {
+	0% { transform: scale(1); }
+	50% { transform: scale(1.1); }
+	100% { transform: scale(1); }
+  }
+  
+  .wizard {
+	display: inline-block;
+	animation: pulse 4s ease-in-out infinite;
+  }
+
+
+  @keyframes gradientChange {
+
+  }
+  
+  .wizardcolor {
+	
+	cursor: pointer;
+  }
+  
+
+  .buttonsGrid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr); /* Creates 2 columns */
+	gap: 10px; /* Adjust the gap between buttons as needed */
+	justify-content: center; /* Centers the grid items horizontally */
+	align-items: center; /* Aligns the grid items vertically */
+  }
+  
+  .buttons {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 10px; /* Adjust the gap between buttons as needed */
+	justify-content: center; /* Centers the buttons horizontally */
+	align-items: center; /* Aligns the buttons vertically */
+  }
+  
+  .buttons a {
+	flex: 1 0 calc(50% - 10px); /* Adjust the 10px if you change the gap to ensure proper spacing */
+	text-align: center;
+	box-sizing: border-box;
+	margin-bottom: 10px; /* Space between rows of buttons */
+  }
+  
+  /* This ensures that even if there's only one button in a row, it stretches to full width */
+  .buttons a:last-child {
+	flex-basis: 100%;
+  }
