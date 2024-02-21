@@ -38,7 +38,7 @@ const AboutComponent = () => {
             <iframe
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/7e90gBu4pas1"
+              src="https://www.youtube.com/embed/Lgd1APuWPyI"
               title="YouTube video player"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -62,6 +62,14 @@ const AboutComponent = () => {
 </div>*/}
       </div>
       <div className="buttons">
+      <a
+    href="http://jasongodfrey.dev"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    Web Development
+  </a>
   <a
     href="https://github.com/jasonygodfrey"
     target="_blank"
@@ -77,14 +85,6 @@ const AboutComponent = () => {
     className="neoh_fn_button"
   >
     LinkedIn
-  </a>
-  <a
-    href="http://jasongodfrey.dev"
-    target="_blank"
-    rel="noreferrer"
-    className="neoh_fn_button"
-  >
-    Web Development
   </a>
   <a
     href="https://samuraistudios.vercel.app"

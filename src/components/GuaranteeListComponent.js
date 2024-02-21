@@ -69,10 +69,10 @@ Certifications: AWS, Systems Design, Coding, Algos, Full-Stack, Data Analysis, W
           {/* Contact Section */}
           <div className="neoh_fn_contact">
           <div className="neoh_fn_title">
-            <h3 className="fn_title">Contact</h3>
+           {/*  <h3 className="fn_title">Contact</h3>
             <div className="line">
               <span />
-            </div>
+            </div> */}
           </div>
           <p className="fn_desc fn_animated_text" style={{ color: 'white' }}>
                     Morbi non dignissim erat, a blandit felis. Suspendisse nec lorem vel orci varius congue ut vitae est.

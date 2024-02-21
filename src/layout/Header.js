@@ -159,7 +159,7 @@ const Header = () => {
 
             
             </div>
-            <div className="trigger">
+            {/* <div className="trigger">
               <div className="trigger_in" onClick={() => setToggle(!toggle)}>
                 <span className="text"></span>
                 <span className="hamb">
@@ -168,7 +168,7 @@ const Header = () => {
                   <span className="hamb_c" />
                 </span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </header>

@@ -48,7 +48,7 @@ const Index = () => {
                 cursor: 'default', // Ensures the cursor doesn't change, if that's part of the hover effect
               }}
               >
-                GAME DEV PORTFOLIO
+                GAME DEV | SOFTWARE ENGINEER
 
               </p>
             </div>
