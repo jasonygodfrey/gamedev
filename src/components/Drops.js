@@ -53,12 +53,12 @@ const Drops = () => {
       <section id="drop">
         <div className="container">
           {/* Main Title */}
-          <div className="neoh_fn_title">
+        {/*    <div className="neoh_fn_title">
             <h3 className="fn_title">Defining the Meta: Projects</h3>
             <div className="line">
               <span />
-            </div>
-          </div>
+            </div> 
+          </div>*/} 
           {/* !Main Title */}
           {/* Drops List */}
           <div className="neoh_fn_drops">

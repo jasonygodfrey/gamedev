@@ -135,17 +135,19 @@ export const progressTotop = () => {
   var height = document.body.clientHeight;
   var scrolled = parseInt((winScroll / (height - window.innerHeight)) * 300);
   var totop = document.querySelector(".neoh_fn_totop");
-  if (winScroll > 0) {
-    totop.classList.add("active");
-  } else {
-    totop.classList.remove("active");
+  if (totop) { // Check if totop exists
+    if (winScroll > 0) {
+      totop.classList.add("active");
+    } else {
+      totop.classList.remove("active");
+    }
+    let strockSolid = totop.querySelector(".stroke-solid");
+    if (strockSolid) {
+      strockSolid.style.strokeDashoffset = 300 - scrolled;
+    }
   }
-  let strockSolid = totop.querySelector(".stroke-solid");
-  if (strockSolid) {
-    strockSolid.style.strokeDashoffset = 300 - scrolled;
-  }
-  // totop.querySelector(".stroke-solid").css("stroke-dashoffset", 300 - scrolled);
 };
+
 
 // paggination
 export const pagination = (listClass, sort, active) => {

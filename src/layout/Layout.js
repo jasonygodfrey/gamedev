@@ -11,7 +11,6 @@ import {
 } from "../utilits";
 import Footer from "./Footer";
 import Header from "./Header";
-import ScrollTop from "./ScrollTop";
 
 const Layout = ({ children, pageName }) => {
   useEffect(() => {
@@ -32,7 +31,6 @@ const Layout = ({ children, pageName }) => {
         <Header />
         <div className="neoh_fn_content">{children}</div>
         <Footer />
-        <ScrollTop />
       </div>
 
       <div className="neoh_fn_moving_box"></div>
