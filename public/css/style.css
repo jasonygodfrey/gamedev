@@ -192,7 +192,7 @@ a.full_link{
 	transition: all .3s ease;
 }
 .neoh_fn_header.fixer{
-	background-color: #111;
+/*	background-color: #111; */
 	padding: 20px 0;
 }
 .neoh_fn_header .header_in{
@@ -596,9 +596,7 @@ a.full_link{
 .neoh_fn_about_item .buttons a{
 	margin: 5px 20px 5px 0;
 }
-.neoh_fn_about_item .buttons a:last-child{
-	margin-right: 0;
-}
+
 
 /* Main Title */
 .neoh_fn_title{
@@ -4803,6 +4801,7 @@ a.full_link{
 	gap: 10px; /* Adjust the gap between buttons as needed */
 	justify-content: center; /* Centers the buttons horizontally */
 	align-items: center; /* Aligns the buttons vertically */
+	margin: 0 -5px; /* Adjust negative margin to half of your gap */
   }
   
   .buttons a {
@@ -4810,9 +4809,20 @@ a.full_link{
 	text-align: center;
 	box-sizing: border-box;
 	margin-bottom: 10px; /* Space between rows of buttons */
+	display: flex; /* Use flexbox to center text */
+	justify-content: center; /* Center text horizontally */
+	align-items: center; /* Center text vertically */
+	height: 50px; /* Fixed height for all buttons */
+	padding: 0 15px; /* Adjust padding as needed */
+	margin: 5px; /* Half of your gap */
   }
   
-  /* This ensures that even if there's only one button in a row, it stretches to full width */
-  .buttons a:last-child {
-	flex-basis: 100%;
+/* Adjust the last button to take full width if alone in the last row */
+.buttons a:last-child:nth-last-child(1) {
+	flex-basis: calc(100% - 10px);
   }
+
+  .neoh_fn_down:hover .icon svg {
+	fill: cyan; /* Change the SVG color to cyan */
+  }
+

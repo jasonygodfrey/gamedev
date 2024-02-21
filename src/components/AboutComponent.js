@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 
 const AboutComponent = () => {
   const initialText = "Greetings! My name is Jason: Digital Alchemist and Architect of Virtual Realms. As an ascendant of the mystical arts of  C++, Lua, SQL, JavaScript, and Python, I engineer the essence of immersive, interactive digital experiences. Each venture embarked upon is led with a collaborative, innovative gameplay, and user experience-first ethos. Thank you, brave traveller, for embarking upon this thrilling quest through my practiced conjurings.";
-  const wizardText = "Welcome! I'm Jason: Software Engineer, game developer, and full-stack web designer! My technical expertise includes C++, Lua, SQL, JavaScript, and Python. I excel in blending immersive gameplay with interactive web technologies, leveraging open-source MMO frameworks to create engaging experiences. With a solid foundation in computer science and business information systems, I bring a collaborative spirit and a passion for innovative game design to every project. Explore my journey from web to game development and view my projects.";
+  const wizardText = "Welcome! I'm Jason: Software Engineer, game developer, and full-stack web designer. My technical expertise includes C++, Lua, SQL, JavaScript, Python, Unity VR, Unreal. I excel in blending immersive gameplay with interactive web experiences  led with a collaborative, innovative, and user-experience first ethos. With a solid foundation in computer science and business information systems, I bring a collaborative spirit and a passion for innovative game design to every project. Explore my journey from web to game development and view my projects.";
 
   const [text, setText] = useState(initialText);
 
@@ -46,19 +46,20 @@ const AboutComponent = () => {
             ></iframe>
           </div>
           <div className="content_item">
-            <div className="neoh_fn_title" data-align="left">
-              <h3 className="fn_title">Crafting Worlds: About Me</h3>
-              <div className="line">
-                <span />
-              </div>
+            <div className="neoh_fn_title" data-align="left"> 
+              <h3 className="fn_title">{/*Crafting Worlds: About Me*/}</h3>
+          {/*  <div className="line"> 
+                <span /> 
+              </div>*/}
             </div>
             <div className="desc">
-        <p>{text}</p>
-        <div className="wizard">
+        <p>  
+</p>
+    {/*    <div className="wizard">
   <span className="wizardcolor" onClick={handleClick}>
     [{isWizardMode ? '🔮wizard mode 🧙‍♂️' : '⭐/Translate'}]
-  </span>
-</div>
+  </span>  
+</div>*/}
       </div>
       <div className="buttons">
   <a

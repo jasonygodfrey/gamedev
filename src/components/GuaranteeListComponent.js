@@ -50,7 +50,7 @@ const GuaranteeListComponent = () => {
           {/* Skills Section */}
           <div className="neoh_fn_skills">
           <div className="neoh_fn_title">
-            <h3 className="fn_title">Certified Skills</h3>
+            <h3 className="fn_title"></h3>
             <div className="line">
               <span />
             </div>

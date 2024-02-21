@@ -32,7 +32,7 @@ const Index = () => {
             <div className="content">
             <h2
                 className="fn_title"
-                title="JASONG"
+                title=""
                 style={{
                   // Inline styles here won't change on hover
                   cursor: 'default', // Ensures the cursor doesn't change, if that's part of the hover effect
@@ -41,21 +41,29 @@ const Index = () => {
                 JASONG
               </h2>
 
-              <p className="fn_desc fn_animated_text">
+              <p 
+              className="fn_desc fn_animated_text"
+              style={{
+                // Inline styles here won't change on hover
+                cursor: 'default', // Ensures the cursor doesn't change, if that's part of the hover effect
+              }}
+              >
                 GAME DEV PORTFOLIO
 
               </p>
             </div>
           </div>
-          <a
-            href="#about"
-            className="neoh_fn_down magic-hover magic-hover__square"
-          >
-            <span className="text">Scroll Down ⊂(◉‿◉)つ</span>
-            <span className="icon">
-              <img src="svg/right-arr.svg" alt="" className="fn__svg" />
-            </span>
-          </a>
+<div className="fade-in">
+  <a
+    href="#about"
+    className="neoh_fn_down magic-hover magic-hover__square"
+  >
+    <span className="text">Scroll Down</span>
+    <span className="icon">
+      <img src="svg/right-arr.svg" alt="" className="fn__svg" />
+    </span>
+  </a>
+</div>
         </div>
       </div>
       {/* !Hero Header */}
