@@ -47,19 +47,19 @@ const AboutComponent = () => {
           </div>
           <div className="content_item">
             <div className="neoh_fn_title" data-align="left"> 
-              <h3 className="fn_title">{/*Crafting Worlds: About Me*/}</h3>
-          {/*  <div className="line"> 
+              <h3 className="fn_title">Crafting Worlds: About Me</h3>
+           <div className="line"> 
                 <span /> 
-              </div>*/}
+              </div>
             </div>
             <div className="desc">
-        <p>  
+        <p>  {text}
 </p>
-    {/*    <div className="wizard">
+        <div className="wizard">
   <span className="wizardcolor" onClick={handleClick}>
     [{isWizardMode ? '🔮wizard mode 🧙‍♂️' : '⭐/Translate'}]
   </span>  
-</div>*/}
+</div>
       </div>{/*
       <div className="buttons">
       <a
