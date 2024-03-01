@@ -53,6 +53,42 @@ const Index = () => {
               </p>
             </div>
           </div>
+          <div className="buttons">
+      <a
+    href="http://jasongodfrey.dev"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    Web Development
+  </a>
+  <a
+    href="https://github.com/jasonygodfrey"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    GitHub
+  </a>
+  <a
+    href="https://www.linkedin.com/in/jasong7"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    LinkedIn
+  </a>
+  <a
+    href="https://samuraistudios.vercel.app"
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    Samurai Studios
+  </a>
+</div>
+          
+          {/*
 <div className="fade-in">
   <a
     href="#about"
@@ -63,10 +99,12 @@ const Index = () => {
       <img src="svg/right-arr.svg" alt="" className="fn__svg" />
     </span>
   </a>
-</div>
+</div>*/}
         </div>
       </div>
       {/* !Hero Header */}
+      
+
       {/* About Section */}
       <AboutComponent />
       {/* !About Section */}

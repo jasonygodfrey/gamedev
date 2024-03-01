@@ -53,12 +53,12 @@ const Drops = () => {
       <section id="drop">
         <div className="container">
           {/* Main Title */}
-        {/*    <div className="neoh_fn_title">
-            <h3 className="fn_title">Defining the Meta: Projects</h3>
+           <div className="neoh_fn_title">
+            <h3 className="fn_title">Projects</h3>
             <div className="line">
               <span />
             </div> 
-          </div>*/} 
+          </div> 
           {/* !Main Title */}
           {/* Drops List */}
           <div className="neoh_fn_drops">
@@ -67,7 +67,7 @@ const Drops = () => {
                 <div
                   className="item"
                   data-modal-image="img/drops/1.jpg"
-                  data-modal-title="Neoh #4588"
+                  data-modal-title="WoW Dev"
                   data-modal-description="Suspendisse eu velit est. Cras nec vestibulum quam. Donec tincidunt purus nec enim tincidunt, sit amet facilisis massa laoreet. Integer mollis nec sapien eu lacinia."
                   data-modal-opensea-url="#"
                   data-modal-discord-url=""
@@ -78,7 +78,7 @@ const Drops = () => {
                   </div>
                   <div className="title_holder">
                     <h3 className="fn_title">
-                      <a onClick={() => onClick(1)}>Neoh #4588</a>
+                      <a onClick={() => onClick(1)}>WoW Dev</a>
                     </h3>
                   </div>
                 </div>
@@ -87,7 +87,7 @@ const Drops = () => {
                 <div
                   className="item"
                   data-modal-image="img/drops/2.jpg"
-                  data-modal-title="Neoh #4587"
+                  data-modal-title="Unreal Engine"
                   data-modal-description="Suspendisse eu velit est. Cras nec vestibulum quam. Donec tincidunt purus nec enim tincidunt, sit amet facilisis massa laoreet. Integer mollis nec sapien eu lacinia."
                   data-modal-opensea-url=""
                   data-modal-discord-url="#"
@@ -98,7 +98,7 @@ const Drops = () => {
                   </div>
                   <div className="title_holder">
                     <h3 className="fn_title">
-                      <a onClick={() => onClick(2)}>Neoh #4587</a>
+                      <a onClick={() => onClick(2)}>Unreal Engine</a>
                     </h3>
                   </div>
                 </div>
@@ -107,7 +107,7 @@ const Drops = () => {
                 <div
                   className="item"
                   data-modal-image="img/drops/3.jpg"
-                  data-modal-title="Neoh #4586"
+                  data-modal-title="Unity"
                   data-modal-description="Suspendisse eu velit est. Cras nec vestibulum quam. Donec tincidunt purus nec enim tincidunt, sit amet facilisis massa laoreet. Integer mollis nec sapien eu lacinia."
                   data-modal-opensea-url="#"
                   data-modal-discord-url=""
@@ -118,7 +118,7 @@ const Drops = () => {
                   </div>
                   <div className="title_holder">
                     <h3 className="fn_title">
-                      <a onClick={() => onClick(3)}>Neoh #4586</a>
+                      <a onClick={() => onClick(3)}>Unity</a>
                     </h3>
                   </div>
                 </div>
@@ -127,7 +127,7 @@ const Drops = () => {
                 <div
                   className="item"
                   data-modal-image="img/drops/4.jpg"
-                  data-modal-title="Neoh #4585"
+                  data-modal-title="Phaser"
                   data-modal-description="Suspendisse eu velit est. Cras nec vestibulum quam. Donec tincidunt purus nec enim tincidunt, sit amet facilisis massa laoreet. Integer mollis nec sapien eu lacinia."
                   data-modal-opensea-url="#"
                   data-modal-discord-url=""
@@ -138,7 +138,7 @@ const Drops = () => {
                   </div>
                   <div className="title_holder">
                     <h3 className="fn_title">
-                      <a onClick={() => onClick(4)}>Neoh #4585</a>
+                      <a onClick={() => onClick(4)}>Phaser</a>
                     </h3>
                   </div>
                 </div>
@@ -147,7 +147,7 @@ const Drops = () => {
                 <div
                   className="item"
                   data-modal-image="img/drops/5.jpg"
-                  data-modal-title="Neoh #4584"
+                  data-modal-title="Web Dev"
                   data-modal-description="Suspendisse eu velit est. Cras nec vestibulum quam. Donec tincidunt purus nec enim tincidunt, sit amet facilisis massa laoreet. Integer mollis nec sapien eu lacinia."
                   data-modal-opensea-url="#"
                   data-modal-discord-url=""
@@ -158,7 +158,7 @@ const Drops = () => {
                   </div>
                   <div className="title_holder">
                     <h3 className="fn_title">
-                      <a onClick={() => onClick(5)}>Neoh #4584</a>
+                      <a onClick={() => onClick(5)}>Web Dev</a>
                     </h3>
                   </div>
                 </div>
@@ -167,7 +167,7 @@ const Drops = () => {
                 <div
                   className="item"
                   data-modal-image="img/drops/6.jpg"
-                  data-modal-title="Neoh #4583"
+                  data-modal-title="Game Design"
                   data-modal-description="Suspendisse eu velit est. Cras nec vestibulum quam. Donec tincidunt purus nec enim tincidunt, sit amet facilisis massa laoreet. Integer mollis nec sapien eu lacinia."
                   data-modal-opensea-url="#"
                   data-modal-discord-url=""
@@ -178,7 +178,7 @@ const Drops = () => {
                   </div>
                   <div className="title_holder">
                     <h3 className="fn_title">
-                      <a onClick={() => onClick(6)}>Neoh #4583</a>
+                      <a onClick={() => onClick(6)}>Game Design</a>
                     </h3>
                   </div>
                 </div>

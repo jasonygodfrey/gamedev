@@ -60,7 +60,7 @@ const AboutComponent = () => {
     [{isWizardMode ? '🔮wizard mode 🧙‍♂️' : '⭐/Translate'}]
   </span>  
 </div>*/}
-      </div>
+      </div>{/*
       <div className="buttons">
       <a
     href="http://jasongodfrey.dev"
@@ -94,7 +94,7 @@ const AboutComponent = () => {
   >
     Samurai Studios
   </a>
-</div>
+</div>*/}
 </div>
         </div>
       </div>

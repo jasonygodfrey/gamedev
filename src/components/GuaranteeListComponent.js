@@ -56,7 +56,7 @@ const GuaranteeListComponent = () => {
             </div>
           </div>
           <p className="fn_desc fn_animated_text" style={{ color: 'white', whiteSpace: 'pre-line' }}>
-{`Game Dev: 
+{`Skills: 
 C++ , C# , Lua , Unreal Engine, Unity, VR Virtual Reality, Systems Design, Databases: SQL, MySQL, MongoDB, Data Structures & Algorithms, Data Visualization, Scripting & Web: TypeScript, JavaScript, Python, PHP, WebGL, ThreeJS, React.js, Next.JS, Full-Stack Web, HTML, CSS, Tools: GitHub, Git, Jira, Atlassian, Figma, Blender, Photoshop Web Frameworks: Django, Apache, Node.js, API Cloud and Servers: AWS Suite, Google Cloud, Linux Methodologies: Agile, Scrum, SDLC, AI
 Education:
 Bachelor of Science - BS, Computer Science 
@@ -74,9 +74,9 @@ Certifications: AWS, Systems Design, Coding, Algos, Full-Stack, Data Analysis, W
               <span />
             </div> */}
           </div>
-          <p className="fn_desc fn_animated_text" style={{ color: 'white' }}>
+         {/*   <p className="fn_desc fn_animated_text" style={{ color: 'white' }}>
                     Morbi non dignissim erat, a blandit felis. Suspendisse nec lorem vel orci varius congue ut vitae est.
-                  </p>
+                  </p> */}
           </div>
         </div>
       </section>

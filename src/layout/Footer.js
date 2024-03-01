@@ -69,8 +69,8 @@ const Footer = () => {
         </div> */}
         {/* !Footer Top */}
         {/* Footer Bottom */}
-        <div className="footer_bottom">
-          <div className="container">
+       <div className="footer_bottom">
+           <div className="container">
             <div className="fb_in">
               <div className="fb_left">
                 <p>
@@ -83,7 +83,7 @@ const Footer = () => {
                     JasonGodfrey.dev
                   </a>
                 </p> 
-              </div>
+              </div>{/*
               <div className="fb_right">
                 <ul>
                   <li>
@@ -98,7 +98,7 @@ const Footer = () => {
                     <a href="#">Terms &amp; Conditions</a>
                   </li>
                 </ul>
-              </div>
+              </div>*/}
             </div>
           </div>
         </div>
