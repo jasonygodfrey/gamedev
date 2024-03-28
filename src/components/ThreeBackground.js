@@ -1,17 +1,32 @@
-import { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
-
-const ThreeBackground = () => {
+const ThreeBackground = forwardRef((props, ref) => {
   const mountRef = useRef(null);
+  let mixers = [];
+
+  useImperativeHandle(ref, () => ({
+    playDragonAnimationOnce: () => {
+      // Assuming the dragon's mixer is the first one for simplification
+      const dragonMixer = mixers[0]; // Adjust this based on your actual logic
+      if (dragonMixer && dragonMixer._actions && dragonMixer._actions.length > 0) {
+        // Assuming the first action is what you want to play
+        const action = dragonMixer.clipAction(dragonMixer._actions[0]._clip);
+        action.reset();
+        action.setLoop(THREE.LoopOnce);
+        action.clampWhenFinished = true;
+        action.play();
+      }
+    }
+  }));
+
 
   useEffect(() => {
     // At the start of your useEffect
-let mixers = [];
 
     const scene = new THREE.Scene();
 
@@ -96,6 +111,8 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
 
     const clock = new THREE.Clock();
 
+
+    
     const animate = function () {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
@@ -104,6 +121,7 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
       });
       composer.render(delta);
     };
+    
     
 
     animate();
@@ -159,6 +177,6 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
   }, []);
 
   return <div ref={mountRef} style={{ width: '100%', height: '100%' }} />;
-};
+});
 
 export default ThreeBackground;

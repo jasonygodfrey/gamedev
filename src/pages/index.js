@@ -5,12 +5,13 @@ import ServicesComponent from "@components/ServicesComponent";
 import WhyChooseUsComponent from "@components/WhyChooseUsComponent";
 import Layout from "../layout/Layout";
 import ThreeBackground from "@components/ThreeBackground"; // Adjust the import path according to your project's structure
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 
 
 const Index = () => {
   const [showAbout, setShowAbout] = useState(false);
+  const threeBackgroundRef = useRef(); // Create a ref
 
   
   return (
@@ -21,7 +22,8 @@ const Index = () => {
         <div className="bg_overlay">
           {/* Overlay Color */}
          {/* <div className="bg_color" />*/}
-          <ThreeBackground />
+         <ThreeBackground ref={threeBackgroundRef} /> {/* Assign the ref here */}
+
 
           {/* !Overlay Color */}
           {/* Overlay Image 
@@ -90,6 +92,8 @@ const Index = () => {
   </a>
   <a
               onClick={() => setShowAbout(true)}
+              onMouseEnter={() => threeBackgroundRef.current.playDragonAnimationOnce()}
+
 
     target="_blank"
     rel="noreferrer"
