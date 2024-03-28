@@ -201,7 +201,8 @@ a.full_link{
 	display: -ms-flex;
 	display: -o-flex;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center; /* Center items horizontally */
+
 	-ms-align-items: center;
 	align-items: center;
 }
@@ -790,18 +791,20 @@ a.full_link{
 	position: absolute;
 	left: 0;
 	right: 0;
-	width: 100%;
+	width: 00%;
 	height: auto;
 	display: block;
-	z-index: 6;
+	z-index: -6;
 	color: #111;
 }
 .top_divider{
-	top: -1px;
+	top: -0px;
+	z-index: -6;;
 }
 .bottom_divider{
-	bottom: -1px;
+	bottom: -0px;
 	transform: rotate(180deg);
+	z-index: -6;
 }
 
 

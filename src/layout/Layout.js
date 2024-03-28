@@ -30,7 +30,7 @@ const Layout = ({ children, pageName }) => {
       <div className="neoh_fn_main" data-footer-sticky="">
         <Header />
         <div className="neoh_fn_content">{children}</div>
-        <Footer />
+        {/* <Footer /> */}
       </div>
 
       <div className="neoh_fn_moving_box"></div>

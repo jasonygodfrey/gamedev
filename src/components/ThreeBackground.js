@@ -14,6 +14,7 @@ const ThreeBackground = () => {
 let mixers = [];
 
     const scene = new THREE.Scene();
+
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -89,6 +90,7 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
 });
 
     camera.position.z = 5;
+// Correcting the excessive downward tilt
 
     
 
@@ -107,10 +109,13 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
     animate();
 
     const onDocumentMouseMove = (event) => {
+
       var mouseX = (event.clientX - window.innerWidth / 2) / 100;
       var mouseY = (event.clientY - window.innerHeight / 2) / 100;
-      camera.position.x += (mouseX - camera.position.x) * 0.005;
-      camera.position.y += (-mouseY - camera.position.y) * 0.005;
+      camera.position.x += (mouseX - camera.position.x) * 0.1;
+      
+      camera.position.y += (-mouseY - camera.position.y) * 0.1;
+
       camera.lookAt(scene.position);
     };
 

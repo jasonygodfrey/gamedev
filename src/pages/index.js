@@ -50,7 +50,7 @@ const Index = () => {
                 cursor: 'default', // Ensures the cursor doesn't change, if that's part of the hover effect
               }}
               >
-                GAME DEV | SOFTWARE ENGINEER
+              {/*  GAME DEV | SOFTWARE ENGINEER */}
 
               </p>
             </div>
@@ -153,10 +153,10 @@ const Index = () => {
       {/* Services Section */}
       
       {/* !Services Section */}
-<Drops />
+{/*<Drops />*/}
     {/*  <Drops />*/}
       {/* Investor Section */}
-    <WhyChooseUsComponent /> 
+   {/*  <WhyChooseUsComponent /> */}
       {/* !Investor Section */}
       {/* Blog Section */}
      {/* <BlogComponent /> */}
