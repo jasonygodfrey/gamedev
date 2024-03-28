@@ -147,14 +147,15 @@ const Header = () => {
       </div>
       {/* !Right Navigation */}
       {/* Header */}
-      <header className="neoh_fn_header">
-        <div className="container">
-          <div className="header_in">
-            <div className="logo">
-            <Link legacyBehavior href="/">
-  <a>
-    <img src="img/logo.png" alt="" style={{ width: '64px', height: '64px' }} />
-  </a>
+{/* Header */}
+<header className="neoh_fn_header">
+  <div className="container">
+    <div className="header_in">
+      <div className="logo">
+        <Link legacyBehavior href="/" style={{ pointerEvents: 'none' }}>
+          <a style={{ pointerEvents: 'none' }}>
+            <img src="img/logo.png" alt="" style={{ width: '254px', height: '64px', pointerEvents: 'none' }} />
+          </a>
 </Link>
 
             

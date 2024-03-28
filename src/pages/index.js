@@ -5,10 +5,12 @@ import ServicesComponent from "@components/ServicesComponent";
 import WhyChooseUsComponent from "@components/WhyChooseUsComponent";
 import Layout from "../layout/Layout";
 import ThreeBackground from "@components/ThreeBackground"; // Adjust the import path according to your project's structure
+import React, { useState } from 'react';
 
 
 
 const Index = () => {
+  const [showAbout, setShowAbout] = useState(false);
 
   
   return (
@@ -30,7 +32,7 @@ const Index = () => {
         <div className="hero_content">
           <div className="container">
             <div className="content">
-            <h2
+         {/*     <h2
                 className="fn_title"
                 title=""
                 style={{
@@ -39,7 +41,7 @@ const Index = () => {
                 }}
               >
                 JASONG
-              </h2>
+              </h2> */}
 
               <p 
               className="fn_desc fn_animated_text"
@@ -86,6 +88,15 @@ const Index = () => {
   >
     Samurai Studios
   </a>
+  <a
+              onClick={() => setShowAbout(true)}
+
+    target="_blank"
+    rel="noreferrer"
+    className="neoh_fn_button"
+  >
+    about
+  </a>
 </div>
           
           {/*
@@ -106,7 +117,7 @@ const Index = () => {
       
 
       {/* About Section */}
-      <AboutComponent />
+      {showAbout && <AboutComponent />}
       {/* !About Section */}
       <section id="video">
           {/* Dividers */}

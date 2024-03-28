@@ -181,7 +181,7 @@ a.full_link{
 /*------------------------------------------------------------------*/
 .neoh_fn_header{
 	padding: 30px 0;
-	border-bottom: 1px solid rgba(255,255,255,.1);
+	border-bottom: 0px solid rgba(255,255,255,.1);
 }
 .neoh_fn_header{
 	position: fixed;
@@ -4826,3 +4826,9 @@ a.full_link{
 	fill: cyan; /* Change the SVG color to cyan */
   }
 
+
+  
+/* Hide scrollbar for Chrome, Safari and Opera */
+::-webkit-scrollbar {
+	display: none;
+  }

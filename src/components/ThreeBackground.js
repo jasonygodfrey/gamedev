@@ -71,20 +71,26 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
   gltf.scene.scale.set(10000, 10000, 10000); // Adjusted scale
   gltf.scene.position.set(0, -80, -300); // Adjusted position
   gltf.scene.rotation.y = 0; // Adjusted rotation
-
- // When loading '/blue_dragon/scene.gltf'
-if (gltf.animations && gltf.animations.length > 1) {
-  const dragonMixer = new THREE.AnimationMixer(gltf.scene);
-  const secondAnimation = gltf.animations[1]; // Make sure the index is correct
-  const action = dragonMixer.clipAction(secondAnimation);
-  action.setLoop(THREE.LoopRepeat);
-  action.play();
-  mixers.push(dragonMixer);
-}
+  gltf.scene.rotation.z = 0.; // Adjusted rotation
+  gltf.scene.rotation.x = 0.65; // Adjusted rotation
+  // When loading '/blue_dragon/scene.gltf'
+  if (gltf.animations && gltf.animations.length > 1) {
+    const dragonMixer = new THREE.AnimationMixer(gltf.scene);
+    const secondAnimation = gltf.animations[1]; // Make sure the index is correct
+    const action = dragonMixer.clipAction(secondAnimation);
+    action.setLoop(THREE.LoopRepeat);
+    
+    // Slow down the animation speed
+    action.timeScale = 0.5; // Play the animation at half speed
+    
+    action.play();
+    mixers.push(dragonMixer);
+  }
 });
 
-
     camera.position.z = 5;
+
+    
 
     const clock = new THREE.Clock();
 
@@ -103,8 +109,8 @@ if (gltf.animations && gltf.animations.length > 1) {
     const onDocumentMouseMove = (event) => {
       var mouseX = (event.clientX - window.innerWidth / 2) / 100;
       var mouseY = (event.clientY - window.innerHeight / 2) / 100;
-      camera.position.x += (mouseX - camera.position.x) * 0.05;
-      camera.position.y += (-mouseY - camera.position.y) * 0.05;
+      camera.position.x += (mouseX - camera.position.x) * 0.005;
+      camera.position.y += (-mouseY - camera.position.y) * 0.005;
       camera.lookAt(scene.position);
     };
 

@@ -24,7 +24,7 @@ const Layout = ({ children, pageName }) => {
   return (
     <Fragment>
       <Head>
-        <title>🔮JasonG Game Dev🧙‍♂️</title>
+        <title>🧙‍♂️JasonG Game & Web Dev🐉</title>
       </Head>
       <VideoPopup />
       <div className="neoh_fn_main" data-footer-sticky="">
