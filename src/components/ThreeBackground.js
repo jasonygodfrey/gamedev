@@ -10,6 +10,9 @@ const ThreeBackground = () => {
   const mountRef = useRef(null);
 
   useEffect(() => {
+    // At the start of your useEffect
+let mixers = [];
+
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
@@ -51,14 +54,35 @@ camera.rotation.x = initialBeta * degtorad;
       gltf.scene.position.set(0, -80, -300);
       gltf.scene.rotation.y = Math.PI / 2.2;
 
-      if (gltf.animations && gltf.animations.length) {
-        mixer = new THREE.AnimationMixer(gltf.scene);
-        gltf.animations.forEach((clip) => {
-          const action = mixer.clipAction(clip);
-          action.play();
-        });
-      }
+      // When loading '/portal/scene.gltf'
+if (gltf.animations && gltf.animations.length) {
+  const portalMixer = new THREE.AnimationMixer(gltf.scene);
+  gltf.animations.forEach((clip) => {
+    const action = portalMixer.clipAction(clip);
+    action.play();
+  });
+  mixers.push(portalMixer);
+}
     });
+
+// Adjusted loader for the blue dragon to repeat its 2nd animation
+loader.load('/blue_dragon/scene.gltf', (gltf) => {
+  scene.add(gltf.scene);
+  gltf.scene.scale.set(10000, 10000, 10000); // Adjusted scale
+  gltf.scene.position.set(0, -80, -300); // Adjusted position
+  gltf.scene.rotation.y = 0; // Adjusted rotation
+
+ // When loading '/blue_dragon/scene.gltf'
+if (gltf.animations && gltf.animations.length > 1) {
+  const dragonMixer = new THREE.AnimationMixer(gltf.scene);
+  const secondAnimation = gltf.animations[1]; // Make sure the index is correct
+  const action = dragonMixer.clipAction(secondAnimation);
+  action.setLoop(THREE.LoopRepeat);
+  action.play();
+  mixers.push(dragonMixer);
+}
+});
+
 
     camera.position.z = 5;
 
@@ -67,13 +91,12 @@ camera.rotation.x = initialBeta * degtorad;
     const animate = function () {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
-
-      if (mixer) {
+      mixers.forEach((mixer) => {
         mixer.update(delta);
-      }
-
+      });
       composer.render(delta);
     };
+    
 
     animate();
 
@@ -113,7 +136,7 @@ camera.rotation.x = initialBeta * degtorad;
     window.addEventListener('resize', handleResize);
 
     return () => {
-      
+      mixers = [];
 
       if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);
