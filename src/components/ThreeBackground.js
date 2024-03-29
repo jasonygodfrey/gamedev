@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef, useState } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
@@ -6,23 +6,82 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 const ThreeBackground = forwardRef((props, ref) => {
+    // Define the state with useState before using it in useImperativeHandle
+    const [currentAnimationIndex, setCurrentAnimationIndex] = useState(0);
+
   const mountRef = useRef(null);
   let mixers = [];
 
-  useImperativeHandle(ref, () => ({
-    playDragonAnimationOnce: () => {
-      // Assuming the dragon's mixer is the first one for simplification
-      const dragonMixer = mixers[0]; // Adjust this based on your actual logic
-      if (dragonMixer && dragonMixer._actions && dragonMixer._actions.length > 0) {
-        // Assuming the first action is what you want to play
-        const action = dragonMixer.clipAction(dragonMixer._actions[0]._clip);
-        action.reset();
-        action.setLoop(THREE.LoopOnce);
-        action.clampWhenFinished = true;
-        action.play();
+ // Consolidate useImperativeHandle
+ useImperativeHandle(ref, () => ({
+  playNextDragonAnimation: () => {
+    const dragonMixer = mixers.find(mixer => mixer instanceof THREE.AnimationMixer);
+    if (dragonMixer) {
+      const animations = props.animations; // Ensure this is correctly referencing your animations
+      if (animations && animations.length > 0) {
+        const nextAnimationIndex = (currentAnimationIndex + 1) % animations.length;
+        setCurrentAnimationIndex(nextAnimationIndex); // Update the animation index
+        
+        dragonMixer.stopAllAction(); // Stop all current actions
+
+        const nextClip = animations[nextAnimationIndex]; // Get the next animation clip
+        const nextAction = dragonMixer.clipAction(nextClip);
+        nextAction.reset();
+        nextAction.setLoop(THREE.LoopOnce);
+        nextAction.clampWhenFinished = true;
+        nextAction.play();
       }
     }
-  }));
+  }
+}), [currentAnimationIndex, mixers, props.animations]); // Correctly include all dependencies
+
+
+
+  // Set up event listeners for click and touchend events
+  useEffect(() => {
+    const playNextAnimationOnTap = (event) => {
+      event.preventDefault(); // Prevent any default behavior
+      console.log('Screen tapped/clicked');
+      if (ref.current) {
+        ref.current.playNextDragonAnimation();
+      }
+    };
+  
+    window.addEventListener('click', playNextAnimationOnTap);
+    window.addEventListener('touchend', playNextAnimationOnTap);
+  
+    return () => {
+      window.removeEventListener('click', playNextAnimationOnTap);
+      window.removeEventListener('touchend', playNextAnimationOnTap);
+    };
+  }, []); // No dependencies needed here
+   // Add a state to keep track of the current animation index
+
+   useImperativeHandle(ref, () => ({
+     playNextDragonAnimation: () => {
+       const dragonMixer = mixers.find(mixer => mixer instanceof THREE.AnimationMixer); // Find the dragon's mixer
+       if (dragonMixer) {
+         const animations = dragonMixer._actions; // Get all animations
+         if (animations.length > 0) {
+           // Stop all current actions
+           animations.forEach(action => action.stop());
+ 
+           // Calculate the next animation index
+           const nextAnimationIndex = (currentAnimationIndex + 1) % animations.length;
+ 
+           // Play the next animation
+           const nextAction = dragonMixer.clipAction(animations[nextAnimationIndex]._clip);
+           nextAction.reset();
+           nextAction.setLoop(THREE.LoopOnce);
+           nextAction.clampWhenFinished = true;
+           nextAction.play();
+ 
+           // Update the current animation index
+           setCurrentAnimationIndex(nextAnimationIndex);
+         }
+       }
+     }
+   }));
 
 
   useEffect(() => {
@@ -36,6 +95,8 @@ const ThreeBackground = forwardRef((props, ref) => {
     if (mountRef.current) {
       mountRef.current.appendChild(renderer.domElement);
     }
+
+    
 // Set initial camera rotation
 const initialBeta = -90; // device looking down
 const degtorad = Math.PI / 180; // Degree-to-Radian conversion
@@ -91,16 +152,27 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
   gltf.scene.rotation.x = 0.65; // Adjusted rotation
   // When loading '/blue_dragon/scene.gltf'
   if (gltf.animations && gltf.animations.length > 1) {
+
     const dragonMixer = new THREE.AnimationMixer(gltf.scene);
+
     const secondAnimation = gltf.animations[1]; // Make sure the index is correct
+
     const action = dragonMixer.clipAction(secondAnimation);
+
     action.setLoop(THREE.LoopRepeat);
+
     
+
     // Slow down the animation speed
+
     action.timeScale = 0.5; // Play the animation at half speed
+
     
+
     action.play();
+
     mixers.push(dragonMixer);
+
   }
 });
 

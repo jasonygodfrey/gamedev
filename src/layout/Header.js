@@ -153,9 +153,9 @@ const Header = () => {
     <div className="header_in">
       <div className="logo">
         <Link legacyBehavior href="/" style={{ pointerEvents: 'none' }}>
-          <a style={{ pointerEvents: 'none' }}>
-            <img src="img/logo.png" alt="" style={{ width: '254px', height: '64px', pointerEvents: 'none' }} />
-          </a>
+        <a href="https://jasongodfrey.dev" target="_blank" rel="noopener noreferrer">
+          <img src="img/logo.png" alt="logo" style={{ width: '254px', height: '64px' }} />
+        </a>
 </Link>
 
             

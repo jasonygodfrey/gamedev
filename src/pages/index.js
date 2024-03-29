@@ -31,6 +31,7 @@ const Index = () => {
           {/* !Overlay Image */}
         </div>
         {/* Overlay (of hero header) */}
+        
         <div className="hero_content">
           <div className="container">
             <div className="content">
@@ -57,6 +58,7 @@ const Index = () => {
               </p>
             </div>
           </div>
+          {/*
           <div className="buttons">
       <a
     href="http://jasongodfrey.dev"
@@ -102,6 +104,7 @@ const Index = () => {
     about
   </a>
 </div>
+*/}
           
           {/*
 <div className="fade-in">
