@@ -64,19 +64,17 @@ const Index = () => {
               rel="noreferrer"
               className="neoh_fn_button"
             >
-              About
+              About (TBA)
             </a>
 
             <a
               onClick={() => setShowAbout(true)}
-              onMouseEnter={() =>
-                threeBackgroundRef.current.playDragonAnimationOnce()
-              }
+             
               target="_blank"
               rel="noreferrer"
               className="neoh_fn_button"
             >
-              Featured GAME DEV
+              Featured GAME DEV (TBA)
             </a>
             <a
               href="https://jasongodfreydev.vercel.app/web/"
