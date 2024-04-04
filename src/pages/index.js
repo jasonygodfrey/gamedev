@@ -56,7 +56,7 @@ const Index = () => {
 
           <div className="buttons">
           <a
-              onClick={() => setShowAbout(true)}
+             // onClick={() => setShowAbout(true)}
             //  onMouseEnter={() =>
               //  threeBackgroundRef.current.playDragonAnimationOnce()
           //    } 
@@ -68,7 +68,7 @@ const Index = () => {
             </a>
 
             <a
-              onClick={() => setShowAbout(true)}
+           //   onClick={() => setShowAbout(true)}
              
               target="_blank"
               rel="noreferrer"
