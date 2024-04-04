@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useImperativeHandle, forwardRef, useState } from 'react';
+import React, { useEffect, useRef, useImperativeHandle, forwardRef } from 'react';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer';
@@ -6,89 +6,24 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass';
 
 const ThreeBackground = forwardRef((props, ref) => {
-    // Define the state with useState before using it in useImperativeHandle
-    const [currentAnimationIndex, setCurrentAnimationIndex] = useState(0);
-
   const mountRef = useRef(null);
   let mixers = [];
 
- // Consolidate useImperativeHandle
- useImperativeHandle(ref, () => ({
-  playNextDragonAnimation: () => {
-    const dragonMixer = mixers.find(mixer => mixer instanceof THREE.AnimationMixer);
-    if (dragonMixer) {
-      const animations = props.animations; // Ensure this is correctly referencing your animations
-      if (animations && animations.length > 0) {
-        const nextAnimationIndex = (currentAnimationIndex + 1) % animations.length;
-        setCurrentAnimationIndex(nextAnimationIndex); // Update the animation index
-        
-        dragonMixer.stopAllAction(); // Stop all current actions
-
-        const nextClip = animations[nextAnimationIndex]; // Get the next animation clip
-        const nextAction = dragonMixer.clipAction(nextClip);
-        nextAction.reset();
-        nextAction.setLoop(THREE.LoopOnce);
-        nextAction.clampWhenFinished = true;
-        nextAction.play();
+  useImperativeHandle(ref, () => ({
+    playDragonAnimationOnce: () => {
+      const dragonMixer = mixers[0]; // Adjust this based on your actual logic
+      if (dragonMixer && dragonMixer._actions && dragonMixer._actions.length > 0) {
+        const action = dragonMixer.clipAction(dragonMixer._actions[0]._clip);
+        action.reset();
+        action.setLoop(THREE.LoopOnce);
+        action.clampWhenFinished = true;
+        action.play();
       }
     }
-  }
-}), [currentAnimationIndex, mixers, props.animations]); // Correctly include all dependencies
-
-
-
-  // Set up event listeners for click and touchend events
-  useEffect(() => {
-    const playNextAnimationOnTap = (event) => {
-      event.preventDefault(); // Prevent any default behavior
-      console.log('Screen tapped/clicked');
-      if (ref.current) {
-        ref.current.playNextDragonAnimation();
-      }
-    };
-  
-    window.addEventListener('click', playNextAnimationOnTap);
-    window.addEventListener('touchend', playNextAnimationOnTap);
-  
-    return () => {
-      window.removeEventListener('click', playNextAnimationOnTap);
-      window.removeEventListener('touchend', playNextAnimationOnTap);
-    };
-  }, []); // No dependencies needed here
-   // Add a state to keep track of the current animation index
-
-   useImperativeHandle(ref, () => ({
-     playNextDragonAnimation: () => {
-       const dragonMixer = mixers.find(mixer => mixer instanceof THREE.AnimationMixer); // Find the dragon's mixer
-       if (dragonMixer) {
-         const animations = dragonMixer._actions; // Get all animations
-         if (animations.length > 0) {
-           // Stop all current actions
-           animations.forEach(action => action.stop());
- 
-           // Calculate the next animation index
-           const nextAnimationIndex = (currentAnimationIndex + 1) % animations.length;
- 
-           // Play the next animation
-           const nextAction = dragonMixer.clipAction(animations[nextAnimationIndex]._clip);
-           nextAction.reset();
-           nextAction.setLoop(THREE.LoopOnce);
-           nextAction.clampWhenFinished = true;
-           nextAction.play();
- 
-           // Update the current animation index
-           setCurrentAnimationIndex(nextAnimationIndex);
-         }
-       }
-     }
-   }));
-
+  }));
 
   useEffect(() => {
-    // At the start of your useEffect
-
     const scene = new THREE.Scene();
-
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 100000);
     const renderer = new THREE.WebGLRenderer({ alpha: true });
     renderer.setSize(window.innerWidth, window.innerHeight);
@@ -96,13 +31,11 @@ const ThreeBackground = forwardRef((props, ref) => {
       mountRef.current.appendChild(renderer.domElement);
     }
 
-    
-// Set initial camera rotation
-const initialBeta = -90; // device looking down
-const degtorad = Math.PI / 180; // Degree-to-Radian conversion
-camera.rotation.x = initialBeta * degtorad;
+    // Camera initial rotation
+    const initialBeta = -90;
+    const degtorad = Math.PI / 180;
+    camera.rotation.x = initialBeta * degtorad;
 
-    // Post-processing
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(scene, camera));
 
@@ -112,17 +45,9 @@ camera.rotation.x = initialBeta * degtorad;
     bloomPass.radius = 0.55;
     composer.addPass(bloomPass);
 
-    // Adding ambient light
+    // Ambient light
     const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
     scene.add(ambientLight);
-
-    // Directional light (commented out, but can be added if needed)
-    // const directionalLight = new THREE.DirectionalLight(0xffffff, 0.5);
-    // directionalLight.position.set(0, 1, 0);
-    // scene.add(directionalLight);
-
-    // Animation Mixer
-    let mixer;
 
     const loader = new GLTFLoader();
     loader.load('/portal/scene.gltf', (gltf) => {
@@ -131,100 +56,57 @@ camera.rotation.x = initialBeta * degtorad;
       gltf.scene.position.set(0, -80, -300);
       gltf.scene.rotation.y = Math.PI / 2.2;
 
-      // When loading '/portal/scene.gltf'
-if (gltf.animations && gltf.animations.length) {
-  const portalMixer = new THREE.AnimationMixer(gltf.scene);
-  gltf.animations.forEach((clip) => {
-    const action = portalMixer.clipAction(clip);
-    action.play();
-  });
-  mixers.push(portalMixer);
-}
+      if (gltf.animations && gltf.animations.length) {
+        const portalMixer = new THREE.AnimationMixer(gltf.scene);
+        gltf.animations.forEach((clip) => {
+          const action = portalMixer.clipAction(clip);
+          action.play();
+        });
+        mixers.push(portalMixer);
+      }
     });
 
-// Adjusted loader for the blue dragon to repeat its 2nd animation
-loader.load('/blue_dragon/scene.gltf', (gltf) => {
-  scene.add(gltf.scene);
-  gltf.scene.scale.set(10000, 10000, 10000); // Adjusted scale
-  gltf.scene.position.set(0, -80, -300); // Adjusted position
-  gltf.scene.rotation.y = 0; // Adjusted rotation
-  gltf.scene.rotation.z = 0.; // Adjusted rotation
-  gltf.scene.rotation.x = 0.65; // Adjusted rotation
-  // When loading '/blue_dragon/scene.gltf'
-  if (gltf.animations && gltf.animations.length > 1) {
+    loader.load('/blue_dragon/scene.gltf', (gltf) => {
+      scene.add(gltf.scene);
+      gltf.scene.scale.set(10000, 10000, 10000);
+      gltf.scene.position.set(0, -80, -300);
+      gltf.scene.rotation.set(0.65, 0, 0);
 
-    const dragonMixer = new THREE.AnimationMixer(gltf.scene);
-
-    const secondAnimation = gltf.animations[1]; // Make sure the index is correct
-
-    const action = dragonMixer.clipAction(secondAnimation);
-
-    action.setLoop(THREE.LoopRepeat);
-
-    
-
-    // Slow down the animation speed
-
-    action.timeScale = 0.5; // Play the animation at half speed
-
-    
-
-    action.play();
-
-    mixers.push(dragonMixer);
-
-  }
-});
+      if (gltf.animations && gltf.animations.length > 1) {
+        const dragonMixer = new THREE.AnimationMixer(gltf.scene);
+        const secondAnimation = gltf.animations[1];
+        const action = dragonMixer.clipAction(secondAnimation);
+        action.setLoop(THREE.LoopRepeat);
+        action.timeScale = 0.45;
+        action.play();
+        mixers.push(dragonMixer);
+      }
+    });
 
     camera.position.z = 5;
-// Correcting the excessive downward tilt
-
-    
 
     const clock = new THREE.Clock();
-
-
-    
     const animate = function () {
       requestAnimationFrame(animate);
       const delta = clock.getDelta();
-      mixers.forEach((mixer) => {
-        mixer.update(delta);
-      });
+      mixers.forEach((mixer) => mixer.update(delta));
       composer.render(delta);
     };
-    
-    
-
     animate();
 
+    // Define the function in a scope accessible to both the if block and the return function
     const onDocumentMouseMove = (event) => {
-
       var mouseX = (event.clientX - window.innerWidth / 2) / 100;
       var mouseY = (event.clientY - window.innerHeight / 2) / 100;
       camera.position.x += (mouseX - camera.position.x) * 0.1;
-      
       camera.position.y += (-mouseY - camera.position.y) * 0.1;
-
       camera.lookAt(scene.position);
     };
 
-    // Mobile control
-    const onDeviceOrientation = (event) => {
-      
-      const { alpha, beta, gamma } = event;
-      const degtorad = Math.PI / 180; // Degree-to-Radian conversion
-    
-      // Convert degrees to radians and adjust sensitivity
-      const x = (gamma ? gamma * degtorad : 0); // Left to right
-      const y = (beta ? beta * degtorad : 0); // Front to back
-    
-      // Set camera rotation
-      camera.rotation.set(y, x, 0, "YXZ");
-    };
-
-    document.addEventListener('mousemove', onDocumentMouseMove, false);
-    window.addEventListener('deviceorientation', onDeviceOrientation, false);
+    const isMobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+    if (!isMobile) {
+      document.addEventListener('mousemove', onDocumentMouseMove, false);
+    }
 
     const handleResize = () => {
       const width = window.innerWidth;
@@ -238,13 +120,11 @@ loader.load('/blue_dragon/scene.gltf', (gltf) => {
 
     return () => {
       mixers = [];
-
       if (mountRef.current && mountRef.current.contains(renderer.domElement)) {
         mountRef.current.removeChild(renderer.domElement);
       }
       window.removeEventListener('resize', handleResize);
       document.removeEventListener('mousemove', onDocumentMouseMove);
-      window.removeEventListener('deviceorientation', onDeviceOrientation);
     };
   }, []);
 

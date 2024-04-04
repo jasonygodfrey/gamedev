@@ -515,7 +515,7 @@ a.full_link{
 
 
 #about{
-	background-color: #111;
+	background-color: #11111100;
 	padding: 150px 0;
 	position: relative;
 }
@@ -717,7 +717,7 @@ a.full_link{
 	font-size: 16px;
 	text-transform: uppercase;
 	font-family: var(--hff);
-	border: 2px solid var(--extra-color);
+	border: 0px solid var(--extra-color);
 	border-radius: 5px;
 	line-height: 46px;
 	padding: 0 20px 0 73px;
@@ -4835,3 +4835,4 @@ a.full_link{
 ::-webkit-scrollbar {
 	display: none;
   }
+
