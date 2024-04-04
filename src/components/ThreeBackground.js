@@ -32,7 +32,7 @@ const ThreeBackground = forwardRef((props, ref) => {
     }
 
     // Camera initial rotation
-    const initialBeta = -90;
+    const initialBeta = -0;
     const degtorad = Math.PI / 180;
     camera.rotation.x = initialBeta * degtorad;
 
