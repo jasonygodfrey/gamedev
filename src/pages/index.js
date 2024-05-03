@@ -55,7 +55,7 @@ const Index = () => {
           </div>
 
           <div className="buttons">
-          <a
+         {/* <a
              // onClick={() => setShowAbout(true)}
             //  onMouseEnter={() =>
               //  threeBackgroundRef.current.playDragonAnimationOnce()
@@ -75,14 +75,14 @@ const Index = () => {
               className="neoh_fn_button"
             >
               Featured GAME DEV (TBA)
-            </a>
+            </a>  */}
             <a
-              href="https://jasongodfreydev.vercel.app/web/"
+              href="https://samuraistudios.dev"
               target="_blank"
               rel="noreferrer"
               className="neoh_fn_button"
             >
-                            Samurai Studios Web Design
+                            Samurai Studios Web Development
 
             </a>
             <a
